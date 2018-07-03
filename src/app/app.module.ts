@@ -1,4 +1,7 @@
+// import { BrowserModule } from '@angular/platform-browser';
+// import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 
 import "materialize-css";
@@ -18,6 +21,7 @@ import { SortItemComponent } from './sort-item/sort-item.component';
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MaterializeModule,
   ],
   providers: [],
