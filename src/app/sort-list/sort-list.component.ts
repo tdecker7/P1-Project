@@ -1,6 +1,7 @@
 import { Component, AfterViewInit, ViewChildren } from '@angular/core';
 
 import { SortItemComponent } from '../sort-item/sort-item.component';
+import { ArrayFillService } from '../array-fill.service';
 
 @Component({
   selector: 'app-sort-list',
@@ -11,17 +12,21 @@ export class SortListComponent implements AfterViewInit {
   sortItems: Array<number> = [];
   @ViewChildren(SortItemComponent) childItems: SortItemComponent[];
 
-  constructor() { }
+  constructor(private arrayFillService: ArrayFillService) { }
 
   ngAfterViewInit() {
-    this.fillArray(this.sortItems, 10);
+    this.sortItems = this.fillArray(10);
     console.log(this.childItems);
   }
 
-  fillArray(array, length): void {
-    for (let i = 0; i < length; i++) {
-      array.push(i);
-    }
+  fillArray(length: number): Array<number> {
+    return this.arrayFillService.randomFill(length);
+    // array = this.arrayFillService.randomFill(length);
+    // return array = this.arrayFillService.randomFill(length);
+    // for (let i = 0; i < length; i++) {
+    //   array.push(i);
+    // }
+    // console.log(array);
   }
 
   sort(): void {
