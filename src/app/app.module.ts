@@ -6,11 +6,15 @@ import { MaterializeModule } from 'angular2-materialize';
 
 import { AppComponent } from './app.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SortListComponent } from './sort-list/sort-list.component';
+import { SortItemComponent } from './sort-item/sort-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidebarComponent
+    SidebarComponent,
+    SortListComponent,
+    SortItemComponent
   ],
   imports: [
     BrowserModule,
