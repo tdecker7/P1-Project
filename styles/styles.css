@@ -12,3 +12,6 @@ body {
 .text-white {
     color: white;
 }
+li {
+    margin: .75em;
+}
