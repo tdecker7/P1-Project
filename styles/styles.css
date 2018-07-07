@@ -12,6 +12,14 @@ body {
 .text-white {
     color: white;
 }
+.navred {
+    background: #ee6e73;
+}
 li {
+    -webkit-transition: all .3s;
+    -moz-transition: all .3s;
+    -ms-transition: all .3s;
+    -o-transition: all .3s;
+    transition: all .3s;
     margin: .75em;
 }
