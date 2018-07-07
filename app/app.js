@@ -1,4 +1,5 @@
 const SORTARRAY = randomArray(10);
+const SELECTEDSORT = { selected : 'bubble' } // initialize to bubble sort
 
 document.addEventListener('DOMContentLoaded', () => {
     const sortList = document.getElementById('sort-list')
@@ -25,8 +26,22 @@ function buildSortItems(parent, array) {
 }
 function sort() {
     const sortListElements = document.getElementById('sort-list').childNodes;
+    const selectedSort = getSelectedSort();
+    console.log(selectedSort);
     // swapElements(sortListElements[0], sortListElements[1]);
     bubbleSort(sortListElements);
+}
+function getSelectedSort() {
+    const picker = document.getElementById('picker');
+    const radios = picker.getElementsByTagName('input');
+
+    for (let i = 0; i < radios.length; i++) {
+         if (radios[i].checked) {
+             SELECTEDSORT.selected = radios[i].id;
+         }
+     }
+    console.log(SELECTEDSORT);
+
 }
 function swapElements(elem1, elem2) {
     elem2.classList.add('animated','slideInRight');

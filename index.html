@@ -17,7 +17,7 @@
                 </div>
             </nav>
         </header>
-        <div class="center-align text-white">
+        <main class="center-align text-white">
             <h1>
                 Welcome to VisualizR!
             </h1>
@@ -25,6 +25,36 @@
                 <ul id="sort-list"></ul>
                 <button onclick="sort()" class="btn-large navred">Sort</button>
             </div>
-        </div>
+            <div class="row">
+                <div class="col sm12 m12">
+                    <div class="card navred">
+                        <div class="card-content text-white">
+                            <span class="card-title">Sort Picker</span>
+                            <form action="#" id="picker" onchange="getSelectedSort()">
+                                <p class="inline">
+                                    <label for="bubble">
+                                        <input id="bubble" 
+                                            class="with-gap" 
+                                            name="group1" 
+                                            type="radio"
+                                            checked>
+                                        <span class="text-white">Bubble</span>
+                                    </label>
+                                </p>
+                                <p class="inline">
+                                    <label>
+                                        <input id="merge"
+                                            class="with-gap" 
+                                            name="group1" 
+                                            type="radio">
+                                        <span class="text-white">Merge</span>
+                                    </label>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
     </body>
 </html>
