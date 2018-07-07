@@ -25,7 +25,8 @@ function buildSortItems(parent, array) {
 }
 function sort() {
     const sortListElements = document.getElementById('sort-list').childNodes;
-    swapElements(sortListElements[0], sortListElements[1]);
+    // swapElements(sortListElements[0], sortListElements[1]);
+    bubbleSort(sortListElements);
 }
 function swapElements(elem1, elem2) {
     elem2.classList.add('animated','slideInRight');
@@ -36,4 +37,20 @@ function swapElements(elem1, elem2) {
         elem2.classList.remove('slideInRight');
         elem1.classList.remove('slideInLeft');
     }, 1000)
+}
+async function bubbleSort(array) {
+    for (let i = 0; i < array.length; i++) {
+        for (let j = 0; j < (array.length - i -1); j++) {
+            let num1 = Number(array[j].innerText);
+            let num2 = Number(array[j+1].innerText);
+            
+            if (num1 > num2) {
+                swapElements(array[j], array[j+1]);
+                await sleep(1000);
+            }
+        }
+    }
+}
+function sleep(milliseconds) {
+    return new Promise(resolve => setTimeout(resolve, milliseconds));
 }
