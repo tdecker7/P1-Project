@@ -4,8 +4,6 @@ const SELECTEDSORT = { selected : 'bubble' } // initialize to bubble sort
 document.addEventListener('DOMContentLoaded', () => {
     const sortList = document.getElementById('sort-list')
 
-    console.log(SORTARRAY);
-
     buildSortItems(sortList, SORTARRAY);
 })
 
@@ -26,10 +24,19 @@ function buildSortItems(parent, array) {
 }
 function sort() {
     const sortListElements = document.getElementById('sort-list').childNodes;
-    const selectedSort = getSelectedSort();
-    console.log(selectedSort);
+    console.log(SELECTEDSORT);
     // swapElements(sortListElements[0], sortListElements[1]);
-    bubbleSort(sortListElements);
+    swapElements(sortListElements[0], sortListElements[4]);
+    switch (SELECTEDSORT.selected) {
+        case 'merge': {
+            bubbleSort(sortListElements);
+            break;
+        }
+        case 'selection': {
+            console.log('do selectSort');
+            break;
+        }
+    }
 }
 function getSelectedSort() {
     const picker = document.getElementById('picker');
