@@ -24,9 +24,6 @@ function buildSortItems(parent, array) {
 }
 function sort() {
     const sortListElements = document.getElementById('sort-list').childNodes;
-    console.log(SELECTEDSORT);
-    // swapElements(sortListElements[0], sortListElements[1]);
-    swapElements(sortListElements[0], sortListElements[4]);
     switch (SELECTEDSORT.selected) {
         case 'merge': {
             bubbleSort(sortListElements);
@@ -34,6 +31,7 @@ function sort() {
         }
         case 'selection': {
             console.log('do selectSort');
+            selectionSort(sortListElements);
             break;
         }
     }
@@ -49,6 +47,10 @@ function getSelectedSort() {
      }
     console.log(SELECTEDSORT);
 
+}
+function swapElementsRebuild(elem1, elem2) {
+    // Build function that can swap any two elements. 
+    // not just elements side-by-side
 }
 function swapElements(elem1, elem2) {
     elem2.classList.add('animated','slideInRight');
@@ -72,6 +74,9 @@ async function bubbleSort(array) {
             }
         }
     }
+}
+async function selectionSort(array) {
+    swapElementsRebuild(array[0], array[4]);
 }
 function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
