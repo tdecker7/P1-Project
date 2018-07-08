@@ -1,3 +1,14 @@
+/**
+ * TODO: Control Flow {
+ *      disable button after sort is pressed
+ *      Allow program to re-init new array
+ * }
+ * TODO: Swapping in Selection {
+ *      There seems to be an issue with swapping 
+ *      on selection sort. Some elements don't trade 
+ *      places.
+ * }
+ */
 const SORTARRAY = randomArray(10);
 const SELECTEDSORT = { selected : 'bubble' } // initialize to bubble sort
 
