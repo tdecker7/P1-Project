@@ -9,34 +9,67 @@
  *      places.
  * }
  */
-const SORTARRAY = randomArray(10);
+const storage = window.localStorage;
+const SORTARRAY = [];
+
 const SELECTEDSORT = { selected : 'bubble' } // initialize to bubble sort
 
 document.addEventListener('DOMContentLoaded', () => {
-    const sortList = document.getElementById('sort-list')
 
-    buildSortItems(sortList, SORTARRAY);
+    initialize();
+
+    document.getElementById('length-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+    })
 })
 
-function initArray() {
-    reInitRandomArray(10, SORTARRAY);
-    buildSortItems(
-        document.getElementById('sort-list'),
-        SORTARRAY
-    )
+function initialize() {
+    let storedArray = JSON.parse(storage.getItem('sortArray'));
+    if (storedArray) {
+        for (let i = 0; i < storedArray.length; i++) {
+            SORTARRAY[i] = storedArray[i];
+        }
+        buildSortItems(
+            document.getElementById('sort-list'),
+            SORTARRAY
+        )
+    } else {
+        initArray();
+    }
 }
+
+function initArray() {
+    let length = document.getElementById('array-length').value;
+    if (typeof +length == 'number') {
+        reInitRandomArray(length);
+    }
+    let list = document.getElementById('sort-list');
+    buildSortItems(list, SORTARRAY);
+    storage.setItem('sortArray', JSON.stringify(SORTARRAY));
+}
+
 function randomArray(length) {
     return new Array(length).fill(0).map(() => {
         return Math.floor(Math.random() * (length * 2));
     })
 }
-function reInitRandomArray(length, array) {
+
+function reInitRandomArray(length) {
+    if (SORTARRAY.length > length) {
+        let diff = SORTARRAY.length - length;
+
+        for(let i = 0; i < diff; i++) {
+            SORTARRAY.pop();
+        }
+    }
+
     for (let i = 0; i < length; i++) {
-        array[i] = Math.floor(Math.random() * (length * 2));
+        SORTARRAY[i] = Math.floor(Math.random() * (length * 2));
     }
 }
+
 function buildSortItems(parent, array) {
-    if (parent.childNodes.length == array.length) {
+    if (parent.childNodes.length) {
         while (parent.firstChild) {
             parent.removeChild(parent.firstChild);
         }
