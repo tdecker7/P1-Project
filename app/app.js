@@ -1,14 +1,3 @@
-/**
- * TODO: Control Flow {
- *      disable button after sort is pressed
- *      Allow program to re-init new array
- * }
- * TODO: Swapping in Selection {
- *      There seems to be an issue with swapping 
- *      on selection sort. Some elements don't trade 
- *      places.
- * }
- */
 const storage = window.localStorage;
 const SORTARRAY = [];
 
@@ -39,7 +28,7 @@ function initialize() {
 }
 
 function initArray() {
-    let length = document.getElementById('array-length').value;
+    let length = document.getElementById('array-length').value || 10;
     if (typeof +length == 'number') {
         reInitRandomArray(length);
     }
