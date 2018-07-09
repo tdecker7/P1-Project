@@ -11,3 +11,8 @@ VisualizR: Sort Algorithm Visualizer
 -You must store some data in Local Storage.
 -You must allow for users to be able to interact with the site.
 -You must deploy your site. (Deployed on now: [Link])
+
+### Install Instructions
+1. Clone the Repo
+2. `cd` into the repo
+3. Run `lite-server` to serve the application
