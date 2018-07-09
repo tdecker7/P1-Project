@@ -18,12 +18,30 @@ document.addEventListener('DOMContentLoaded', () => {
     buildSortItems(sortList, SORTARRAY);
 })
 
+function initArray() {
+    reInitRandomArray(10, SORTARRAY);
+    buildSortItems(
+        document.getElementById('sort-list'),
+        SORTARRAY
+    )
+}
 function randomArray(length) {
     return new Array(length).fill(0).map(() => {
         return Math.floor(Math.random() * (length * 2));
     })
 }
+function reInitRandomArray(length, array) {
+    for (let i = 0; i < length; i++) {
+        array[i] = Math.floor(Math.random() * (length * 2));
+    }
+}
 function buildSortItems(parent, array) {
+    if (parent.childNodes.length == array.length) {
+        while (parent.firstChild) {
+            parent.removeChild(parent.firstChild);
+        }
+    }
+
     const liClasses = ['btn-floating', 'btn-large', 'red'];
     for (let i = 0; i < array.length; i++) {
         let li = document.createElement('li');
@@ -34,15 +52,22 @@ function buildSortItems(parent, array) {
     }
 }
 function sort() {
+
+    document.getElementById('sort').disabled = true;
     const sortListElements = document.getElementById('sort-list').childNodes;
+
     switch (SELECTEDSORT.selected) {
         case 'bubble': {
-            bubbleSort(sortListElements);
+            bubbleSort(sortListElements, () => {
+                document.getElementById('sort').disabled = false;
+            });
             break;
         }
         case 'selection': {
             console.log('do selectSort');
-            selectionSort(sortListElements);
+            selectionSort(sortListElements, () => {
+                document.getElementById('sort').disabled = false;
+            });
             break;
         }
     }
@@ -56,7 +81,6 @@ function getSelectedSort() {
              SELECTEDSORT.selected = radios[i].id;
          }
      }
-    console.log(SELECTEDSORT);
 
 }
 function swapElementsRebuild(elem1, elem2) {
@@ -64,8 +88,6 @@ function swapElementsRebuild(elem1, elem2) {
     const elemRect2 = elem2.getBoundingClientRect();
     const elemOffset1 = elemRect2.left - elemRect1.left;
     const elemOffset2 = elemRect1.left - elemRect2.left;
-    // const origElem1 = elemRect1.left;
-    // const origElem2 = elemRect2.left;
 
     let elem2Clone = elem2.cloneNode(true);
     elem2Clone.style.display = 'hidden';
@@ -114,7 +136,7 @@ function swapElements(elem1, elem2) {
         elem1.classList.remove('slideInLeft');
     }, 1000)
 }
-async function bubbleSort(array) {
+async function bubbleSort(array, callback) {
     for (let i = 0; i < array.length; i++) {
         for (let j = 0; j < (array.length - i -1); j++) {
             let num1 = Number(array[j].innerText);
@@ -126,8 +148,9 @@ async function bubbleSort(array) {
             }
         }
     }
+    callback();
 }
-async function selectionSort(array) {
+async function selectionSort(array, callback) {
     let length = array.length;
     let min;
 
@@ -147,6 +170,7 @@ async function selectionSort(array) {
             await sleep(1000);
         }
     }
+    callback();
 }
 function sleep(milliseconds) {
     return new Promise(resolve => setTimeout(resolve, milliseconds));
