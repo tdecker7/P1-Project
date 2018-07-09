@@ -64,7 +64,6 @@ function sort() {
             break;
         }
         case 'selection': {
-            console.log('do selectSort');
             selectionSort(sortListElements, () => {
                 document.getElementById('sort').disabled = false;
             });
